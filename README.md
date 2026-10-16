@@ -4,6 +4,8 @@ Static project page for the Phantom Ops research paper. The site is plain HTML
 and CSS, with no build step or external dependencies, so GitHub Pages can serve
 it directly from this repository.
 
+**Live site: <https://cam-cambridge.github.io/phantom-ops-website/>**
+
 ## Publish with GitHub Pages
 
 1. Push the repository to GitHub.
