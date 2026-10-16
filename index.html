@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f7f4">
+    <meta name="description" content="Project page for the Phantom Ops research paper.">
+    <title>Phantom Ops — Research Paper</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #17221f;
+        --muted: #596561;
+        --line: #dce2dc;
+        --paper: #f7f7f4;
+        --surface: #fff;
+        --accent: #bd4c32;
+        --accent-dark: #87351f;
+        --green: #d9e7d9;
+        --serif: Georgia, "Times New Roman", serif;
+        --sans: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 5.5rem;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-size: 16px;
+        line-height: 1.65;
+        text-rendering: optimizeLegibility;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      a:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 4px;
+      }
+
+      .page-shell {
+        width: min(100% - 3rem, 1120px);
+        margin-inline: auto;
+      }
+
+      .topbar {
+        position: sticky;
+        z-index: 2;
+        top: 0;
+        border-bottom: 1px solid rgb(220 226 220 / 85%);
+        background: rgb(247 247 244 / 94%);
+        backdrop-filter: blur(12px);
+      }
+
+      .topbar-inner {
+        display: flex;
+        min-height: 68px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+      }
+
+      .wordmark {
+        font-family: var(--serif);
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.6rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        font-size: 0.83rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 160ms ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--accent-dark);
+      }
+
+      .hero {
+        padding: clamp(4rem, 10vw, 8.25rem) 0 5rem;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        margin: 0 0 1.6rem;
+        color: var(--accent-dark);
+        font-size: 0.72rem;
+        font-weight: 750;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 25px;
+        height: 1px;
+        background: currentcolor;
+        content: "";
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 880px;
+        margin-bottom: 1.3rem;
+        font-family: var(--serif);
+        font-size: clamp(3.2rem, 8vw, 6.7rem);
+        font-weight: 500;
+        letter-spacing: -0.075em;
+        line-height: 0.98;
+      }
+
+      .hero-summary {
+        max-width: 690px;
+        margin-bottom: 2rem;
+        color: #46524d;
+        font-family: var(--serif);
+        font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+        line-height: 1.5;
+      }
+
+      .authors {
+        margin: 0 0 0.4rem;
+        font-size: 0.98rem;
+        font-weight: 650;
+      }
+
+      .affiliations {
+        margin: 0 0 2rem;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 45px;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        padding: 0.65rem 1rem;
+        border: 1px solid var(--ink);
+        border-radius: 3px;
+        background: var(--ink);
+        color: white;
+        font-size: 0.84rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+      }
+
+      .button:hover {
+        border-color: var(--accent-dark);
+        background: var(--accent-dark);
+      }
+
+      .button-secondary {
+        background: transparent;
+        color: var(--ink);
+      }
+
+      .button-secondary:hover {
+        color: white;
+      }
+
+      .button svg {
+        width: 16px;
+        height: 16px;
+        flex: none;
+      }
+
+      .visual {
+        position: relative;
+        display: grid;
+        min-height: 290px;
+        overflow: hidden;
+        place-items: center;
+        border: 1px solid #d5ded5;
+        background-color: var(--green);
+        background-image:
+          linear-gradient(rgb(23 34 31 / 5%) 1px, transparent 1px),
+          linear-gradient(90deg, rgb(23 34 31 / 5%) 1px, transparent 1px);
+        background-position: center center;
+        background-size: 32px 32px;
+      }
+
+      .visual::before,
+      .visual::after {
+        position: absolute;
+        width: 340px;
+        height: 340px;
+        border: 1px solid rgb(23 34 31 / 16%);
+        border-radius: 50%;
+        content: "";
+      }
+
+      .visual::after {
+        width: 490px;
+        height: 490px;
+      }
+
+      .visual-label {
+        z-index: 1;
+        max-width: 260px;
+        padding: 1rem 1.3rem;
+        border: 1px solid rgb(23 34 31 / 20%);
+        background: rgb(247 247 244 / 92%);
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 650;
+        letter-spacing: 0.02em;
+        text-align: center;
+      }
+
+      .section {
+        padding: clamp(4rem, 8vw, 6.5rem) 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .section-heading {
+        display: grid;
+        grid-template-columns: minmax(150px, 0.7fr) minmax(0, 1.5fr);
+        gap: 2rem;
+        align-items: start;
+        margin-bottom: 2.25rem;
+      }
+
+      .section-kicker {
+        margin: 0.5rem 0 0;
+        color: var(--accent-dark);
+        font-size: 0.72rem;
+        font-weight: 750;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin-bottom: 0;
+        font-family: var(--serif);
+        font-size: clamp(2.15rem, 4.5vw, 3.35rem);
+        font-weight: 500;
+        letter-spacing: -0.055em;
+        line-height: 1.12;
+      }
+
+      .section-copy {
+        max-width: 700px;
+        margin-left: auto;
+        color: #46524d;
+        font-size: 1.04rem;
+      }
+
+      .section-copy p:last-child {
+        margin-bottom: 0;
+      }
+
+      .placeholder-note {
+        color: var(--muted);
+        font-size: 0.88rem;
+        font-style: italic;
+      }
+
+      .media-section .section-heading {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+      }
+
+      .video-grid,
+      .image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+        gap: 1.25rem;
+      }
+
+      .media-card,
+      .image-card {
+        margin: 0;
+        border: 1px solid var(--line);
+        background: var(--surface);
+      }
+
+      .media-card video,
+      .image-card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: #101614;
+        object-fit: cover;
+      }
+
+      .media-caption,
+      .image-card figcaption {
+        padding: 1rem 1.2rem 1.2rem;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .media-caption h3 {
+        margin-bottom: 0.25rem;
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: 1.15rem;
+      }
+
+      .media-caption p {
+        margin: 0;
+      }
+
+      .abstract-details {
+        border: 1px solid var(--line);
+        background: var(--surface);
+      }
+
+      .abstract-details summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.4rem;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 700;
+        list-style: none;
+      }
+
+      .abstract-details summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .abstract-details summary::after {
+        color: var(--accent-dark);
+        font-size: 1.3rem;
+        content: "+";
+      }
+
+      .abstract-details[open] summary::after {
+        content: "\2212";
+      }
+
+      .abstract-details .section-copy {
+        max-width: none;
+        padding: 0 1.4rem 1.4rem;
+      }
+
+      .authors a {
+        text-underline-offset: 3px;
+      }
+
+      .funding {
+        max-width: 690px;
+        font-size: 0.8rem;
+      }
+
+      .details-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        border: 1px solid var(--line);
+        background: var(--line);
+      }
+
+      .detail-card {
+        min-height: 190px;
+        padding: 1.6rem;
+        background: var(--surface);
+      }
+
+      .detail-number {
+        display: block;
+        margin-bottom: 1.1rem;
+        color: var(--accent-dark);
+        font-family: var(--serif);
+        font-size: 1.3rem;
+      }
+
+      .detail-card h3 {
+        margin-bottom: 0.55rem;
+        font-family: var(--serif);
+        font-size: 1.28rem;
+        font-weight: 600;
+        letter-spacing: -0.025em;
+      }
+
+      .detail-card p {
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .results-placeholder {
+        display: grid;
+        min-height: 250px;
+        place-items: center;
+        border: 1px dashed #b8c3ba;
+        background:
+          linear-gradient(135deg, transparent 49.8%, #dce2dc 50%, transparent 50.2%),
+          linear-gradient(45deg, transparent 49.8%, #dce2dc 50%, transparent 50.2%),
+          #f1f3ee;
+        color: var(--muted);
+        font-size: 0.88rem;
+        text-align: center;
+      }
+
+      .results-placeholder span {
+        max-width: 240px;
+        padding: 0.7rem 1rem;
+        background: rgb(247 247 244 / 94%);
+      }
+
+      .citation-box {
+        overflow-x: auto;
+        margin: 0;
+        padding: 1.5rem;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        color: #34423c;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 0.82rem;
+        line-height: 1.75;
+        white-space: pre;
+      }
+
+      .resource-link {
+        color: var(--accent-dark);
+        font-weight: 650;
+        text-underline-offset: 3px;
+      }
+
+      footer {
+        padding: 1.8rem 0 2.5rem;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.5rem 2rem;
+      }
+
+      footer p {
+        margin: 0;
+      }
+
+      @media (max-width: 680px) {
+        .page-shell {
+          width: min(100% - 2rem, 1120px);
+        }
+
+        .topbar-inner {
+          min-height: 60px;
+          gap: 1rem;
+        }
+
+        .nav-links {
+          justify-content: flex-end;
+          gap: 0.9rem;
+        }
+
+        .nav-links a {
+          font-size: 0.76rem;
+        }
+
+        .hero {
+          padding-top: 4.5rem;
+          padding-bottom: 3.5rem;
+        }
+
+        .visual {
+          min-height: 220px;
+        }
+
+        .section-heading {
+          grid-template-columns: 1fr;
+          gap: 0.8rem;
+        }
+
+        .section-copy {
+          margin-left: 0;
+        }
+
+        .details-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .detail-card {
+          min-height: auto;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="page-shell topbar-inner">
+        <a class="wordmark" href="#top" aria-label="Phantom Ops home">Phantom Ops</a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="paper.pdf">Paper</a>
+          <a href="https://github.com/cam-cambridge/phantom-ops">Code</a>
+          <a href="#videos">Videos</a>
+          <a href="#images">Images</a>
+          <a href="#abstract">Abstract</a>
+          <a href="#citation">Citation</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <div class="page-shell">
+        <section class="hero" aria-labelledby="paper-title">
+          <p class="eyebrow">Research paper · Project page</p>
+          <h1 id="paper-title">Phantom Ops</h1>
+          <p class="hero-summary">Videos and images from robotic teleoperation.</p>
+          <p class="authors"><a href="https://orcid.org/0009-0005-9491-9003">Liyou Zhou</a><sup>1,*</sup>, Omar Faris<sup>1</sup>, Sebastian Pattinson<sup>1</sup>, Fulvio Forni<sup>1</sup></p>
+          <p class="affiliations"><sup>1</sup> Department of Engineering, University of Cambridge, Cambridge, UK<br><sup>*</sup> Corresponding author</p>
+          <p class="affiliations funding">This work was supported by the Engineering and Physical Sciences Research Council and AgriFoRwArdS CDT [EP/S023917/1].</p>
+          <div class="hero-actions" aria-label="Paper resources">
+            <a class="button" href="paper.pdf">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3.75h7l4.25 4.5v12H7a2 2 0 0 1-2-2v-12a2.5 2.5 0 0 1 2-2.5Z" stroke="currentColor" stroke-width="1.7"/><path d="M14 4v5h4M8.5 14h7M8.5 17.5h7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              Paper
+            </a>
+            <a class="button button-secondary" href="https://github.com/cam-cambridge/phantom-ops">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 8-4 4 4 4M15 8l4 4-4 4M13.5 5l-3 14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Code
+            </a>
+            <a class="button button-secondary" href="#citation">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5.5h8M8 9h8M8 12.5h5M6.5 3.75h11A1.75 1.75 0 0 1 19.25 5.5v13a1.75 1.75 0 0 1-1.75 1.75h-11A1.75 1.75 0 0 1 4.75 18.5v-13A1.75 1.75 0 0 1 6.5 3.75Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              Cite
+            </a>
+          </div>
+        </section>
+
+        <section class="section media-section" id="videos" aria-labelledby="videos-title">
+          <div class="section-heading">
+            <p class="section-kicker">01 / In action</p>
+            <h2 id="videos-title">Teleoperation videos</h2>
+          </div>
+          <div class="video-grid">
+            <article class="media-card">
+              <video controls playsinline preload="metadata" poster="media/teleop-placeholder.svg">
+                <source src="media/teleoperation-demo-01.mp4" type="video/mp4">
+              </video>
+              <div class="media-caption">
+                <h3>Teleoperation demo 01</h3>
+                <p>Describe the task and setup.</p>
+              </div>
+            </article>
+            <article class="media-card">
+              <video controls playsinline preload="metadata" poster="media/teleop-placeholder.svg">
+                <source src="media/teleoperation-demo-02.mp4" type="video/mp4">
+              </video>
+              <div class="media-caption">
+                <h3>Teleoperation demo 02</h3>
+                <p>Describe the task and setup.</p>
+              </div>
+            </article>
+            <article class="media-card">
+              <video controls playsinline preload="metadata" poster="media/teleop-placeholder.svg">
+                <source src="media/teleoperation-demo-03.mp4" type="video/mp4">
+              </video>
+              <div class="media-caption">
+                <h3>Teleoperation demo 03</h3>
+                <p>Describe the task and setup.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section media-section" id="images" aria-labelledby="images-title">
+          <div class="section-heading">
+            <p class="section-kicker">02 / Gallery</p>
+            <h2 id="images-title">Images</h2>
+          </div>
+          <div class="image-grid">
+            <figure class="image-card">
+              <img src="media/teleop-placeholder.svg" alt="Robotic teleoperation setup" loading="lazy">
+              <figcaption>Teleoperation setup. Add a caption.</figcaption>
+            </figure>
+            <figure class="image-card">
+              <img src="media/teleop-placeholder.svg" alt="Robot performing a teleoperated task" loading="lazy">
+              <figcaption>Robot in action. Add a caption.</figcaption>
+            </figure>
+            <figure class="image-card">
+              <img src="media/teleop-placeholder.svg" alt="Close-up of the robot and its environment" loading="lazy">
+              <figcaption>Task detail. Add a caption.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section" id="abstract" aria-labelledby="abstract-title">
+          <div class="section-heading">
+            <p class="section-kicker">03 / Overview</p>
+            <h2 id="abstract-title">Abstract</h2>
+          </div>
+          <details class="abstract-details">
+            <summary>Read the abstract</summary>
+            <div class="section-copy">
+              <p>State-of-the-art robot manipulation models rely on imitation learning from large-scale datasets to achieve strong generalisation and performance. The collection of such datasets typically involves considerable amount of human teleoperation. Existing solutions control robot arm by simply mapping a human operator hand pose onto the robot end effector controlling only 6 degrees of freedom. Increasingly, systems are designed with redundant degrees of freedom for better dexterity in manipulation tasks where the articulation of the whole arm is important. We propose an teleoperation algorithm that enables the intuitive control of the whole articulation of the robot arm. We bridge morphology difference between human and robot arm by leveraging virtual model control enabling the operation of different robot arms using a single algorithm. We demonstrate tasks where null space control is crucial for success. We further demonstrate property of compliance and low latency inherent to our approach enhances task performance. Finally, we show that the data collected can be used to train robotic policies for autonomous contact-rich manipulation.</p>
+            </div>
+          </details>
+        </section>
+
+        <section class="section" id="citation" aria-labelledby="citation-title">
+          <div class="section-heading">
+            <p class="section-kicker">04 / Reference</p>
+            <h2 id="citation-title">Citation</h2>
+          </div>
+          <div class="section-copy">
+            <p>If you use this work, please cite the paper:</p>
+            <pre class="citation-box"><code>@inproceedings{phantomops2026,
+  title     = {Phantom Ops: Add the Full Paper Title},
+  author    = {Liyou Zhou and Omar Faris and Sebastian Pattinson and Fulvio Forni},
+  booktitle = {Conference or Journal},
+  year      = {2026}
+}</code></pre>
+            <p class="placeholder-note">Update this BibTeX entry with the paper's final title, author list, venue, and publication year.</p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="page-shell footer-inner">
+        <p>Phantom Ops · Research project page</p>
+        <p>Built as a static site for GitHub Pages.</p>
+      </div>
+    </footer>
+    <script>
+      // Expand the abstract when it is linked to directly.
+      function openAbstract() {
+        if (location.hash === "#abstract") {
+          document.querySelector(".abstract-details").open = true;
+        }
+      }
+      window.addEventListener("hashchange", openAbstract);
+      openAbstract();
+    </script>
+  </body>
+</html>
