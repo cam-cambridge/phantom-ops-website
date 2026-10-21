@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f7f7f4">
-    <meta name="description" content="Project page for the Phantom Ops research paper.">
-    <title>Phantom Ops — Research Paper</title>
+    <meta name="description" content="WARM-T: A Whole Arm Teleoperation Framework for Dexterous Manipulation and Robot Learning.">
+    <title>WARM-T: A Whole Arm Teleoperation Framework for Dexterous Manipulation and Robot Learning</title>
+    <link rel="icon" type="image/svg+xml" href="media/warm-t-mug.svg">
     <style>
       :root {
         color-scheme: light;
@@ -74,11 +75,19 @@
       }
 
       .wordmark {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
         font-family: var(--serif);
         font-size: 1.15rem;
         font-weight: 700;
         letter-spacing: -0.04em;
         text-decoration: none;
+      }
+
+      .wordmark img {
+        width: 2.6rem;
+        height: 2.6rem;
       }
 
       .nav-links {
@@ -537,7 +546,10 @@
   <body>
     <header class="topbar">
       <div class="page-shell topbar-inner">
-        <a class="wordmark" href="#top" aria-label="Phantom Ops home">Phantom Ops</a>
+        <a class="wordmark" href="#top" aria-label="WARM-T home">
+          <img src="media/warm-t-mug.svg" alt="">
+          WARM-T
+        </a>
         <nav class="nav-links" aria-label="Main navigation">
           <a href="paper.pdf">Paper</a>
           <a href="https://github.com/cam-cambridge/phantom-ops">Code</a>
@@ -553,7 +565,7 @@
       <div class="page-shell">
         <section class="hero" aria-labelledby="paper-title">
           <p class="eyebrow">Research paper · Project page</p>
-          <h1 id="paper-title">Phantom Ops</h1>
+          <h1 id="paper-title">WARM-T: A Whole Arm Teleoperation Framework for Dexterous Manipulation and Robot Learning</h1>
           <p class="hero-summary">Videos and images from robotic teleoperation.</p>
           <p class="authors"><a href="https://orcid.org/0009-0005-9491-9003">Liyou Zhou</a><sup>1,*</sup>, Omar Faris<sup>1</sup>, Sebastian Pattinson<sup>1</sup>, Fulvio Forni<sup>1</sup></p>
           <p class="affiliations"><sup>1</sup> Department of Engineering, University of Cambridge, Cambridge, UK<br><sup>*</sup> Corresponding author</p>
@@ -651,8 +663,8 @@
           </div>
           <div class="section-copy">
             <p>If you use this work, please cite the paper:</p>
-            <pre class="citation-box"><code>@inproceedings{phantomops2026,
-  title     = {Phantom Ops: Add the Full Paper Title},
+            <pre class="citation-box"><code>@inproceedings{warmt2026,
+  title     = {WARM-T: A Whole Arm Teleoperation Framework for Dexterous Manipulation and Robot Learning},
   author    = {Liyou Zhou and Omar Faris and Sebastian Pattinson and Fulvio Forni},
   booktitle = {Conference or Journal},
   year      = {2026}
@@ -665,7 +677,7 @@
 
     <footer>
       <div class="page-shell footer-inner">
-        <p>Phantom Ops · Research project page</p>
+        <p>WARM-T · Research project page</p>
         <p>Built as a static site for GitHub Pages.</p>
       </div>
     </footer>

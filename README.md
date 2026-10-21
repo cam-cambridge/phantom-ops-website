@@ -1,8 +1,9 @@
-# Phantom Ops
+# WARM-T
 
-Static project page for the Phantom Ops research paper. The site is plain HTML
-and CSS, with no build step or external dependencies, so GitHub Pages can serve
-it directly from this repository.
+Static project page for “WARM-T: A Whole Arm Teleoperation Framework for
+Dexterous Manipulation and Robot Learning.” The site is plain HTML and CSS,
+with no build step or external dependencies, so GitHub Pages can serve it
+directly from this repository.
 
 **Live site: <https://cam-cambridge.github.io/phantom-ops-website/>**
 
